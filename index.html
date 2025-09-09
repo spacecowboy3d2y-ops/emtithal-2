@@ -4,17 +4,17 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Emtithal — Pest & Environmental Solutions</title>
-<meta name="description" content="Emerald/teal, trust-first site: fast, safe pest control and environmental services across Saudi Arabia."/>
+<meta name="description" content="Fast, safe & guaranteed pest control with audit-ready programs across Saudi Arabia."/>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root{
   /* Emerald/Teal system */
   --brand:#10b981;      /* emerald */
   --brand-600:#059669;  /* deep teal */
-  --ink:#0f1a22;        /* text on light */
+  --ink:#0f1a22;
   --muted:#5b6b72;
-  --bg:#f5fbf9;         /* app background */
-  --paper:#ffffff;      /* cards, shells */
+  --bg:#f5fbf9;
+  --paper:#ffffff;
   --line:#e7f0ee;
   --chip:#effaf6;
   --shadow:0 14px 34px rgba(2,44,34,.10);
@@ -40,17 +40,21 @@ a{text-decoration:none;color:inherit}
 .lead{color:#1f4037}
 .muted{color:var(--muted)}
 .btn{display:inline-flex;gap:10px;align-items:center;justify-content:center;padding:12px 20px;border-radius:12px;font-weight:800;line-height:1}
-.btn-primary{background:linear-gradient(90deg,var(--brand),var(--brand-600));color:#fff;box-shadow:0 12px 28px rgba(16,185,129,.25)}
+.btn-primary{
+  color:#fff;
+  background:linear-gradient(90deg,var(--brand),var(--brand-600));
+  box-shadow:0 12px 28px rgba(16,185,129,.25);
+}
 .btn-primary:hover{filter:brightness(1.05)}
-.btn-ghost{background:#ffffffcc;border:1px solid #cfe9e2;color:#0a4135;backdrop-filter:blur(4px)}
+.btn-ghost{background:#ffffffdd;border:1px solid #cfe9e2;color:#0a4135;backdrop-filter:blur(4px)}
 .badge{display:inline-block;padding:6px 12px;border-radius:999px;background:#dff7ef;border:1px solid #c6ecd9;color:#0b3a2f;font-weight:800;font-size:.78rem;letter-spacing:.25px}
 
-/* ================= Header (new shell) ================= */
+/* ================= Header (shell) ================= */
 .site-header{
   position:fixed;inset:0 0 auto;z-index:1000;height:var(--header-h);
-  display:flex;align-items:center; background:var(--paper);
-  border-bottom:1px solid var(--line); box-shadow:0 4px 18px rgba(2,44,34,.06);
-  transition:height .18s ease, box-shadow .18s ease
+  display:flex;align-items:center;background:var(--paper);
+  border-bottom:1px solid var(--line);box-shadow:0 4px 18px rgba(2,44,34,.06);
+  transition:height .18s ease,box-shadow .18s ease
 }
 .site-header.scrolled{height:68px;box-shadow:0 12px 36px rgba(2,44,34,.10)}
 .hdr{width:min(1160px,92%);margin-inline:auto;display:flex;align-items:center;justify-content:space-between;gap:18px}
@@ -63,7 +67,7 @@ a{text-decoration:none;color:inherit}
 .main-menu a:hover{background:#f0fbf8}
 .caret{margin-left:6px}
 
-/* services dropdown (accessible) */
+/* dropdown */
 .dropdown{
   position:absolute;top:calc(100% + 12px);left:0;min-width:280px;
   background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:10px;
@@ -85,28 +89,49 @@ a{text-decoration:none;color:inherit}
   .main-menu .open>.dropdown{display:block}
 }
 
-/* ================= Hero (new structure) ================= */
+/* ================= Hero (gradient) ================= */
 .hero{
   position:relative;padding:40px 0 90px;
+  /* Layered gradients for depth */
   background:
-    radial-gradient(1000px 360px at 15% -20%, #d7faef 0%, transparent 65%),
-    radial-gradient(900px 320px at 95% -40%, #e3fff6 0%, transparent 60%);
+    radial-gradient(1000px 360px at 10% -20%, #d8faef 0%, transparent 65%),
+    radial-gradient(980px 340px at 90% -30%, #e6fff7 0%, transparent 60%),
+    linear-gradient(180deg, #f7fcfa 0 55%, #edf8f4 100%);
 }
 .hero-inner{width:min(1160px,92%);margin-inline:auto;display:grid;grid-template-columns:1.2fr .8fr;gap:36px;align-items:center}
 .hero h1{margin:.2rem 0 14px}
 .hero p.lead{margin:0 0 18px;max-width:60ch}
+
+/* Gradient-bordered mini form */
 .hero-aside{
-  background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px
+  border:1px solid transparent;
+  background:
+    linear-gradient(#fff,#fff) padding-box,
+    linear-gradient(120deg, #12c392, #0d8b70) border-box;
+  border-radius:18px; box-shadow:var(--shadow-strong); padding:18px;
 }
+
+/* Pure CSS icons (no images required) */
+.ico{
+  width:18px;height:18px;border-radius:6px;display:inline-block;position:relative;flex:none;
+  background:linear-gradient(135deg,var(--brand),var(--brand-600));
+  box-shadow:inset 0 0 0 2px #ffffffa8;
+}
+.ico::after{
+  content:""; position:absolute; left:4px; top:5px; width:8px; height:4px;
+  border-left:2px solid #fff; border-bottom:2px solid #fff; transform:rotate(-45deg);
+}
+
+/* quick facts */
 .quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:8px}
 .quick{display:flex;gap:10px;align-items:center;padding:12px;border-radius:12px;border:1px dashed #cfe9e2;background:var(--chip);font-weight:700}
-.quick img{width:18px;height:18px}
 .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
 
-/* Action Dock (NEW component under hero) */
+/* Action Dock (gradient chip rail) */
 .dock{margin-top:-52px}
 .dock-inner{
-  background:var(--paper);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow-strong);
+  background:linear-gradient(180deg,#ffffff 0%,#f3fbf8 100%);
+  border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow-strong);
   padding:14px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px
 }
 .dock a{
@@ -114,18 +139,20 @@ a{text-decoration:none;color:inherit}
   background:#f7fdfa;border:1px solid #e4f3ee;font-weight:800
 }
 .dock a:hover{filter:brightness(1.02)}
-.dock img{width:18px;height:18px}
 @media (max-width:860px){.hero-inner{grid-template-columns:1fr}.dock-inner{grid-template-columns:repeat(2,1fr)}}
 
-/* ================= Feature Rows (NEW layout) ================= */
+/* ================= Feature Rows (cards with subtle gradient) ================= */
 .feature-row{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;margin-top:28px}
-.feature-row .media{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+.feature-row .media{
+  background:linear-gradient(180deg,#ffffff 0%,#f6fbf9 100%);
+  border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden
+}
 .feature-row .media img{aspect-ratio:16/10;object-fit:cover;width:100%}
 .feature-row .copy h3{margin:.3rem 0 8px}
 .feature-row .copy p{margin:0;color:#38524b}
 @media (max-width:860px){.feature-row{grid-template-columns:1fr}}
 
-/* ================= Clients Carousel (scroll-snap + arrows) ================= */
+/* ================= Clients Carousel ================= */
 .clients{background:#eef9f5;border-block:1px solid var(--line)}
 .carousel{position:relative}
 .track{
@@ -134,41 +161,48 @@ a{text-decoration:none;color:inherit}
 }
 .logo-card{
   scroll-snap-align:start;flex:0 0 200px;
-  background:var(--paper);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);
+  background:linear-gradient(180deg,#ffffff 0%,#f5fbf9 100%);
+  border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);
   padding:18px;display:grid;place-items:center
 }
 .logo-card img{max-height:40px;filter:grayscale(100%) contrast(.85) brightness(.9);opacity:.9}
+/* Arrow buttons (CSS triangles) */
 .carousel button{
-  position:absolute;top:50%;transform:translateY(-50%);border:0;background:#0f201b;opacity:.9;
-  color:#fff;border-radius:12px;padding:10px 12px;box-shadow:0 12px 28px rgba(0,0,0,.25);cursor:pointer
+  position:absolute;top:50%;transform:translateY(-50%);border:0;background:#0f201b;opacity:.92;
+  color:#fff;border-radius:12px;padding:0;width:38px;height:38px;box-shadow:0 12px 28px rgba(0,0,0,.25);cursor:pointer
 }
-.carousel .prev{left:-6px}.carousel .next{right:-6px}
-.carousel button img{width:18px;height:18px}
+.carousel .prev{left:-6px}
+.carousel .next{right:-6px}
+.carousel .prev::before,
+.carousel .next::before{
+  content:"";display:block;width:0;height:0;margin:auto;
+  border-top:8px solid transparent;border-bottom:8px solid transparent;
+}
+.carousel .prev::before{border-right:12px solid #fff}
+.carousel .next::before{border-left:12px solid #fff}
 
-/* ================= Testimonials (cards, new visual) ================= */
+/* ================= Testimonials ================= */
 .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .t-card{
-  background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow)
+  background:linear-gradient(180deg,#ffffff 0%,#f6fbf9 100%);
+  border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow)
 }
 .t-head{display:flex;gap:12px;align-items:center;margin-bottom:6px}
 .avatar{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-weight:800;background:#dff6ee;border:1px solid #cfe9e2;color:#0a3a2f}
-.stars{display:inline-flex;gap:2px}
-.stars img{width:14px;height:14px}
+.star{display:inline-block;width:14px;height:14px;background:linear-gradient(135deg,var(--brand),var(--brand-600));clip-path:polygon(50% 0,61% 39%,100% 39%,68% 59%,79% 100%,50% 75%,21% 100%,32% 59%,0 39%,39% 39%)}
 .t-quote{color:#3a504b}
 @media (max-width:980px){.testi-grid{grid-template-columns:1fr 1fr}}
 @media (max-width:620px){.testi-grid{grid-template-columns:1fr}}
 
-/* ================= CTA (new stripe) ================= */
+/* ================= CTA ================= */
 .cta .panel{
   background:linear-gradient(90deg,var(--brand),var(--brand-600));color:#fff;border-radius:18px;
   padding:22px;display:flex;align-items:center;justify-content:space-between;gap:16px;box-shadow:0 16px 40px rgba(16,185,129,.25)
 }
 .cta .panel p{margin:0}
 
-/* ================= Footer (new architecture) ================= */
-.footer{
-  background:#0f201b;color:#d5e8e2;border-top:1px solid #123b30
-}
+/* ================= Footer ================= */
+.footer{background:#0f201b;color:#d5e8e2;border-top:1px solid #123b30}
 .f-top{padding:36px 0}
 .f-grid{display:grid;gap:36px 48px;grid-template-columns:1.2fr 1fr 1fr 1fr}
 .f-title{font-weight:800;text-transform:uppercase;letter-spacing:.28px;margin:0 0 10px;color:#fff}
@@ -180,22 +214,22 @@ a{text-decoration:none;color:inherit}
 .socials{display:flex;gap:10px;margin-top:10px}
 .s-btn{width:42px;height:42px;display:grid;place-items:center;border-radius:10px;border:1px solid #1f4b3f;background:#0d1c18}
 .s-btn:hover{filter:brightness(1.1)}
-.s-btn img{width:18px;height:18px}
 .f-mid{border-top:1px solid #123b30;border-bottom:1px solid #123b30;padding:12px 0;color:#bfe0d6}
 .f-bot{background:#0b1b16}
 .f-bot .row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 0}
 @media (max-width:980px){.f-grid{grid-template-columns:1fr 1fr}}
 @media (max-width:620px){.f-grid{grid-template-columns:1fr}.f-bot .row{flex-direction:column;text-align:center}}
 
-/* Back to top (floating) */
+/* Back to top (CSS arrow) */
 #topBtn{
   position:fixed;right:18px;bottom:18px;z-index:1200;width:50px;height:50px;border:0;border-radius:999px;
-  background:var(--brand);box-shadow:0 14px 32px rgba(16,185,129,.35);display:grid;place-items:center;
-  opacity:0;transform:translateY(10px);pointer-events:none;transition:opacity .2s,transform .2s,filter .15s
+  background:linear-gradient(135deg,var(--brand),var(--brand-600));box-shadow:0 14px 32px rgba(16,185,129,.35);
+  display:grid;place-items:center;opacity:0;transform:translateY(10px);pointer-events:none;transition:opacity .2s,transform .2s,filter .15s
 }
 #topBtn.show{opacity:1;transform:none;pointer-events:auto}
-#topBtn img{width:22px;height:22px}
-#topBtn:hover{filter:brightness(1.06)}
+#topBtn::before{
+  content:"";width:0;height:0;border-left:9px solid transparent;border-right:9px solid transparent;border-bottom:14px solid #fff;
+}
 
 /* Modal (quote) */
 .modal{position:fixed;inset:0;background:rgba(9,29,23,.55);display:none;place-items:center;z-index:1400;padding:20px}
@@ -243,9 +277,7 @@ textarea{min-height:110px;resize:vertical}
 
       <div class="nav-cta">
         <a class="btn btn-ghost" href="#" onclick="openQuote();return false;">Get a Quote</a>
-        <button id="navToggle" class="nav-toggle" aria-expanded="false" aria-controls="mainMenu">
-          <img src="icon-menu.webp" alt="" width="18" height="18"> Menu
-        </button>
+        <button id="navToggle" class="nav-toggle" aria-expanded="false" aria-controls="mainMenu">Menu</button>
       </div>
     </nav>
   </div>
@@ -265,10 +297,10 @@ textarea{min-height:110px;resize:vertical}
       </div>
 
       <div class="quick-grid">
-        <div class="quick"><img src="icon-shield.webp" alt=""> ISO-aligned QA/QC</div>
-        <div class="quick"><img src="icon-clock.webp" alt=""> 24h Response</div>
-        <div class="quick"><img src="icon-check.webp" alt=""> Audit-Ready Docs</div>
-        <div class="quick"><img src="icon-map.webp" alt=""> KSA Coverage</div>
+        <div class="quick"><span class="ico"></span> ISO-aligned QA/QC</div>
+        <div class="quick"><span class="ico"></span> 24h Response</div>
+        <div class="quick"><span class="ico"></span> Audit-Ready Docs</div>
+        <div class="quick"><span class="ico"></span> KSA Coverage</div>
       </div>
     </div>
 
@@ -301,15 +333,15 @@ textarea{min-height:110px;resize:vertical}
   <!-- Action dock -->
   <div class="container dock">
     <div class="dock-inner" role="navigation" aria-label="Quick links">
-      <a href="pest-control.html"><img src="icon-check.webp" alt="">Pest Programs</a>
-      <a href="environmental.html"><img src="icon-shield.webp" alt="">Environmental</a>
-      <a href="mobile-lab.html"><img src="icon-clock.webp" alt="">Mobile Lab</a>
-      <a href="contact.html#contactForm"><img src="icon-map.webp" alt="">Request Visit</a>
+      <a href="pest-control.html"><span class="ico"></span> Pest Programs</a>
+      <a href="environmental.html"><span class="ico"></span> Environmental</a>
+      <a href="mobile-lab.html"><span class="ico"></span> Mobile Lab</a>
+      <a href="contact.html#contactForm"><span class="ico"></span> Request Visit</a>
     </div>
   </div>
 </section>
 
-<!-- ================= FEATURES (NEW Rows) ================= -->
+<!-- ================= FEATURES ================= -->
 <section class="section">
   <div class="container">
     <h2 class="title">Outcomes You Can Audit</h2>
@@ -341,14 +373,14 @@ textarea{min-height:110px;resize:vertical}
   </div>
 </section>
 
-<!-- ================= CLIENTS (NEW carousel) ================= -->
+<!-- ================= CLIENTS ================= -->
 <section class="section clients">
   <div class="container">
     <h2 class="title">Trusted by Leading Organizations</h2>
     <p class="muted">A selection of entities we’ve supported with programs and audits.</p>
 
     <div class="carousel" id="clientCarousel">
-      <button class="prev" aria-label="Previous"><img src="icon-arrow-left.webp" alt=""></button>
+      <button class="prev" aria-label="Previous"></button>
       <div class="track" id="clientTrack" aria-label="Client logos (scrollable)">
         <!-- Replace with your root-level images -->
         <div class="logo-card"><img src="client-01.webp" alt="Client 1"></div>
@@ -362,12 +394,12 @@ textarea{min-height:110px;resize:vertical}
         <div class="logo-card"><img src="client-09.webp" alt="Client 9"></div>
         <div class="logo-card"><img src="client-10.webp" alt="Client 10"></div>
       </div>
-      <button class="next" aria-label="Next"><img src="icon-arrow-right.webp" alt=""></button>
+      <button class="next" aria-label="Next"></button>
     </div>
   </div>
 </section>
 
-<!-- ================= TESTIMONIALS (NEW look) ================= -->
+<!-- ================= TESTIMONIALS ================= -->
 <section class="section">
   <div class="container">
     <h2 class="title">What Clients Say</h2>
@@ -375,21 +407,27 @@ textarea{min-height:110px;resize:vertical}
       <article class="t-card">
         <div class="t-head">
           <div class="avatar">AA</div>
-          <div><strong>Amal A.</strong><div class="stars"><img src="icon-star.webp" alt=""><img src="icon-star.webp" alt=""><img src="icon-star.webp" alt=""><img src="icon-star.webp" alt=""><img src="icon-star.webp" alt=""></div></div>
+          <div><strong>Amal A.</strong><div>
+            <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+          </div></div>
         </div>
         <p class="t-quote">Same-day visit, and our cockroach issue was gone. Professional, polite, and tidy.</p>
       </article>
       <article class="t-card">
         <div class="t-head">
           <div class="avatar">MK</div>
-          <div><strong>Mohammed K.</strong><div class="stars"><img src="icon-star.webp" alt=""><img src="icon-star.webp" alt=""><img src="icon-star.webp" alt=""><img src="icon-star.webp" alt=""><img src="icon-star.webp" alt=""></div></div>
+          <div><strong>Mohammed K.</strong><div>
+            <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+          </div></div>
         </div>
         <p class="t-quote">Their IPM documentation helped our restaurant pass audit smoothly.</p>
       </article>
       <article class="t-card">
         <div class="t-head">
           <div class="avatar">RS</div>
-          <div><strong>Rana S.</strong><div class="stars"><img src="icon-star.webp" alt=""><img src="icon-star.webp" alt=""><img src="icon-star.webp" alt=""><img src="icon-star.webp" alt=""><img src="icon-star.webp" alt=""></div></div>
+          <div><strong>Rana S.</strong><div>
+            <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+          </div></div>
         </div>
         <p class="t-quote">Clear plan & quick follow-up for our warehouse. We recommend them.</p>
       </article>
@@ -407,7 +445,7 @@ textarea{min-height:110px;resize:vertical}
   </div>
 </section>
 
-<!-- ================= FOOTER (NEW) ================= -->
+<!-- ================= FOOTER ================= -->
 <footer class="footer">
   <div class="container f-top">
     <div class="f-grid">
@@ -419,11 +457,11 @@ textarea{min-height:110px;resize:vertical}
             <span class="muted">Pest Control &amp; Environmental</span>
           </div>
         </div>
-        <div class="socials">
-          <a class="s-btn" href="#" aria-label="Facebook"><img src="icon-facebook.webp" alt=""></a>
-          <a class="s-btn" href="#" aria-label="Instagram"><img src="icon-instagram.webp" alt=""></a>
-          <a class="s-btn" href="#" aria-label="LinkedIn"><img src="icon-linkedin.webp" alt=""></a>
-          <a class="s-btn" href="https://wa.me/966559906886" target="_blank" rel="noopener" aria-label="WhatsApp"><img src="icon-whatsapp.webp" alt=""></a>
+        <div class="socials" aria-label="Social links">
+          <a class="s-btn" href="#" aria-label="Facebook">f</a>
+          <a class="s-btn" href="#" aria-label="Instagram">ig</a>
+          <a class="s-btn" href="#" aria-label="LinkedIn">in</a>
+          <a class="s-btn" href="https://wa.me/966559906886" target="_blank" rel="noopener" aria-label="WhatsApp">wa</a>
         </div>
       </div>
 
@@ -476,14 +514,14 @@ textarea{min-height:110px;resize:vertical}
 </footer>
 
 <!-- Back to Top -->
-<button id="topBtn" aria-label="Back to top"><img src="icon-arrow-up.webp" alt=""></button>
+<button id="topBtn" aria-label="Back to top"></button>
 
 <!-- ================= MODAL ================= -->
 <div id="quoteModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="quoteTitle">
   <div class="dialog">
     <div class="d-head">
       <h3 id="quoteTitle" style="margin:0">Request a Free Inspection</h3>
-      <button class="btn btn-ghost" onclick="closeQuote()">Close</button>
+      <button class="btn btn-ghost" type="button" onclick="closeQuote()">Close</button>
     </div>
     <div class="d-body">
       <form id="quoteForm">
