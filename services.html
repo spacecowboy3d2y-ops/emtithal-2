@@ -1,180 +1,333 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Emtithal Environmental Consulting</title>
-  <meta name="description" content="Environmental studies & consulting, mobile lab, pest control. Category‑A firm aligned with Vision 2030." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="icon" href="favicon.svg" type="svg+xml">
-  <link rel="stylesheet" href="style.css?v=6">
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Emtithal Environmental Consulting — Services</title>
+  <meta name="description" content="Environmental studies & consulting, mobile lab testing, and integrated pest management. Category-A firm aligned with Vision 2030."/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="favicon.webp" type="image/webp"/>
+
+  <style>
+  :root{
+    --teal-50:#e9f7f4; --teal-100:#d2efe9; --teal-200:#b1e4da; --teal-300:#86d3c6;
+    --teal-400:#4fbcae; --teal-500:#19a897; --teal-600:#12887a; --teal-700:#0f6f63;
+    --teal-800:#0b5650; --teal-900:#083a37;
+    --ink:#0b0c11; --ink-on-dark:#ecf6f5; --line:#e6f1ef;
+    --shadow:0 16px 44px rgba(0,0,0,.18);
+    --header-h:72px; --gap:22px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    color:#0f1617; background:
+      radial-gradient(90vw 60vh at 10% -10%, var(--teal-50), transparent 60%),
+      radial-gradient(80vw 70vh at 100% 10%, #eef7f6, transparent 60%),
+      #f6fbfa;
+    padding-top:var(--header-h);
+    -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+  }
+  a{text-decoration:none;color:inherit}
+  img{max-width:100%;display:block}
+  .container{width:min(1160px,92%);margin-inline:auto}
+  .section{padding:84px 0}
+  .title{margin:0 0 10px;font-size:clamp(1.9rem,2.1vw+1rem,2.7rem);color:#0f2a2a}
+  .lead{color:#3c5254}
+  .btn{display:inline-block;padding:12px 20px;border-radius:999px;font-weight:700;box-shadow:0 10px 24px rgba(0,0,0,.18)}
+  .btn.primary{background:linear-gradient(90deg,var(--teal-500),var(--teal-700));color:#fff}
+  .btn.ghost{background:#0e2a3b10;border:1px solid #0e2a3b22}
+
+  /* ===== Header (teal) ===== */
+  .hdr{
+    position:fixed; inset:0 0 auto; height:72px; z-index:1000; display:flex; align-items:center;
+    background:linear-gradient(90deg, var(--teal-600), var(--teal-800)); color:var(--ink-on-dark);
+    box-shadow:0 8px 24px rgba(0,0,0,.28); transition:background .2s,height .2s,color .2s,box-shadow .2s,border .2s;
+  }
+  .hdr.scrolled{
+    height:64px; background:#ffffff; color:var(--teal-800);
+    border-bottom:1px solid #e7eff0; box-shadow:0 8px 24px rgba(0,0,0,.10);
+  }
+  .hdr .inner{width:min(1160px,92%);margin-inline:auto;display:flex;align-items:center;gap:18px;justify-content:space-between}
+  .brand{display:flex;align-items:center;gap:10px}
+  .brand img{height:46px}
+  .brand .logo-dark{display:none}
+  .hdr.scrolled .brand .logo-light{display:none}
+  .hdr.scrolled .brand .logo-dark{display:block}
+
+  .nav ul{display:flex;gap:24px;list-style:none;margin:0;padding:0;align-items:center}
+  .nav a{display:inline-block;padding:8px 12px;border-radius:10px;font-weight:600}
+  .hdr:not(.scrolled) .nav a:hover{background:color-mix(in srgb,#ffffff 12%, transparent); color:#fff}
+  .hdr.scrolled .nav a{color:var(--teal-800)}
+  .hdr.scrolled .nav a:hover{background:#f3fbfa; outline:1px solid #e1f1ef}
+
+  .drop{position:relative}
+  .drop-btn{display:flex;align-items:center;gap:6px}
+  .drop img{width:14px;height:14px;filter:invert(1)}
+  .hdr.scrolled .drop img{filter:none}
+  .panel{
+    position:absolute; top:calc(100% + 10px); left:0; min-width:260px; z-index:1001;
+    background:#fff; border:1px solid #e6edf1; border-radius:12px; padding:8px; box-shadow:0 18px 40px rgba(10,20,30,.15);
+    opacity:0; visibility:hidden; transform:translateY(8px); pointer-events:none;
+    transition:opacity .12s ease, transform .12s ease, visibility 0s linear .12s;
+  }
+  .panel a{display:block;padding:10px 12px;border-radius:8px;color:var(--teal-800);font-weight:700}
+  .panel a:hover{background:var(--teal-800);color:#fff}
+  .drop:hover .panel{opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto;transition-delay:0s}
+  .nav-toggle{display:none;background:#0b5650;color:#fff;border:0;padding:10px 14px;border-radius:10px;font-weight:700}
+  .hdr.scrolled .nav-toggle{background:#eef4f4;color:var(--teal-800)}
+  @media (max-width:760px){
+    .nav-toggle{display:inline-block}
+    .nav ul{display:none;position:absolute;top:72px;left:4%;right:4%;background:#0b5650;border:1px solid #0b5650;padding:14px;border-radius:12px;flex-direction:column;gap:12px;box-shadow:var(--shadow)}
+    .hdr.scrolled .nav ul{background:#fff;border:1px solid #e5f0ef}
+    .nav ul.open{display:flex}
+    .drop .panel{position:static;opacity:1;visibility:visible;transform:none;pointer-events:auto;border:0;box-shadow:none;padding:0;background:transparent}
+    .panel a{padding:8px 12px}
+  }
+
+  /* ===== Hero ===== */
+  .hero{
+    padding:52px 0 22px; background:
+      radial-gradient(600px 220px at 15% 20%, #eaf8f6 0%, transparent 70%),
+      linear-gradient(180deg, #ffffff 0%, #f7fbfb 100%);
+    border-bottom:1px solid var(--line);
+  }
+  .hero .title span{background:linear-gradient(90deg,var(--teal-600),var(--teal-800));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero .lead{max-width:820px}
+
+  /* ===== Grids & cards ===== */
+  .grid{display:grid;gap:var(--gap)}
+  .g-2{grid-template-columns:1.05fr .95fr}
+  .g-3{grid-template-columns:repeat(3,1fr)}
+  @media (max-width:980px){.g-2{grid-template-columns:1fr}}
+  .card{
+    background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;
+    box-shadow:0 14px 34px rgba(0,0,0,.10)
+  }
+  .tag{display:inline-block;padding:6px 10px;border-radius:999px;background:#0b565015;border:1px solid #0b565030;color:#0b5650;font-weight:800;font-size:.82rem}
+  h3{margin:.4rem 0 8px;color:#0f2a2a}
+  h4{margin:10px 0 6px;color:#154a48}
+  ul{margin:10px 0 0;padding-left:18px}
+  .figure{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px;box-shadow:0 14px 34px rgba(0,0,0,.10)}
+  .media{width:100%;height:320px;object-fit:cover;border-radius:10px}
+  .caption{color:#5c6d70;margin:.5rem 0 0}
+
+  /* ===== Testimonials ===== */
+  .t-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:0 12px 26px rgba(0,0,0,.08)}
+
+  /* ===== Footer (teal) ===== */
+  .footer{margin-top:48px;background:linear-gradient(180deg,var(--teal-800) 0%, var(--teal-700) 100%);color:#eaf7f4}
+  .f-top{padding:26px 0}
+  .f-grid{display:grid;gap:36px;grid-template-columns:repeat(4,1fr)}
+  @media (max-width:1000px){.f-grid{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:560px){.f-grid{grid-template-columns:1fr}}
+  .f-title{margin:0 0 12px;font-weight:900;letter-spacing:.2px;color:#fff}
+  .f-links{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+  .f-links a{color:#d5f2ee}
+  .f-links a:hover{color:#fff;text-decoration:underline}
+  .f-mid{border-top:1px solid rgba(255,255,255,.12);border-bottom:1px solid rgba(255,255,255,.12);padding:12px 0;margin-top:10px;color:#d4efeb}
+  .f-bot{background:#083a37}
+  .btm{padding:16px 0;display:flex;align-items:center;justify-content:space-between;gap:12px}
+  @media (max-width:700px){.btm{flex-direction:column;text-align:center}}
+  </style>
 </head>
 <body>
-  <nav class="nav">
-    <div class="container nav-inner">
-      <a href="index.html" class="brand" aria-label="Emtithal home">
-        <div class="logo" aria-hidden="true"><span>E</span></div><span>Emtithal</span>
-      </a>
-      <div class="menu" role="menubar">
-        <a class="" href="index.html">Home</a>
-        <a class="" href="about.html">About</a>
-        <div class="dropdown" role="menuitem" aria-haspopup="true">
-          <a class="drop-btn active" href="services.html" aria-expanded="false">Services
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-          <div class="drop-panel" role="menu">
-            <a class="drop-link" href="services.html#consultancy">Environmental Consultancy</a>
-            <a class="drop-link" href="services.html#mobile-lab">Mobile Lab</a>
-            <a class="drop-link" href="services.html#pest-control">Pest Control</a>
-          </div>
-        </div>
-        <a class="" href="contact.html">Contact</a>
-      </div>
-      <button class="mobile-toggle" aria-expanded="false" aria-controls="mobile-nav">Menu
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-      </button>
-    </div>
-    <div id="mobile-nav" class="mobile-panel container" aria-hidden="true">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="#" id="mobile-services-parent">Services ▾</a>
-      <div id="mobile-services-list" data-open="false" style="display:none;padding-left:6px">
-        <a class="drop-link" href="services.html#consultancy">Environmental Consultancy</a>
-        <a class="drop-link" href="services.html#mobile-lab">Mobile Lab</a>
-        <a class="drop-link" href="services.html#pest-control">Pest Control</a>
-      </div>
-      <a href="contact.html">Contact</a>
-    </div>
-  </nav>
 
-<header class="hero">
-  <div class="container">
-    <h1 class="title">Our <span>Services</span></h1>
-    <p class="lead">From permitting to monitoring, on‑site measurements, and IPM programs, we offer full‑stack environmental support.</p>
+<!-- ===== Header ===== -->
+<header class="hdr" id="siteHeader">
+  <div class="inner">
+    <a class="brand" href="index.html" aria-label="Emtithal Home">
+      <img class="logo-light" src="logo-teal.webp" alt="Emtithal Logo">
+      <img class="logo-dark"  src="logo-dark.webp" alt="Emtithal Logo (dark)">
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <button id="navToggle" class="nav-toggle" aria-expanded="false" aria-controls="mainMenu">Menu</button>
+      <ul id="mainMenu" role="menubar">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+
+        <li class="drop">
+          <a class="drop-btn" href="services.html" aria-expanded="false">
+            Services <img src="chevron-down.webp" alt="">
+          </a>
+          <div class="panel" role="menu">
+            <!-- link to pages, NOT #sections -->
+            <a class="drop-link" href="environmental.html">Environmental Consultancy</a>
+            <a class="drop-link" href="mobile-lab.html">Mobile Lab</a>
+            <a class="drop-link" href="pest-control.html">Pest Control</a>
+          </div>
+        </li>
+
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <a class="btn primary" href="contact.html">Get a Quote</a>
   </div>
 </header>
 
-<section id="consultancy">
+<!-- ===== Hero ===== -->
+<header class="hero">
+  <div class="container">
+    <h1 class="title">Our <span>Services</span></h1>
+    <p class="lead">From permitting to monitoring, on-site measurements, and IPM programs — full-stack environmental support across Saudi Arabia.</p>
+  </div>
+</header>
+
+<!-- ===== Consulting ===== -->
+<section>
   <div class="container grid g-2">
     <div class="figure">
-      <img class="media" src="consultancy.svg" alt="Environmental consultancy imagery">
+      <img class="media" src="consultancy.webp" alt="Environmental consultancy imagery">
       <p class="caption">Studies and permits tailored to your sector and project risk.</p>
     </div>
     <div class="card">
       <span class="tag">Consultancy</span>
       <h3>Environmental Consulting & Studies</h3>
       <ul>
-        <li>Impact & Environmental Audit Studies (EIA, evaluation, HSEIA).</li>
+        <li>EIA & Environmental Audits (incl. HSEIA).</li>
         <li>CEMP/DEMP for construction & decommissioning.</li>
-        <li>Periodic records, monitoring programs & technical reporting.</li>
-        <li>Permit extraction & renewals; EPA/NCEC applications.</li>
-        <li>Quality systems aligned to ISO 9001, ISO 45001, ISO 14001.</li>
+        <li>Periodic records, monitoring programs & reporting.</li>
+        <li>Permit extraction & renewals (EPA/NCEC).</li>
+        <li>Quality systems aligned to ISO 9001/14001/45001.</li>
       </ul>
-      <h4>Our EIA approach</h4>
-      <p>We identify receptors and pathways, model potential impacts, and propose mitigation and monitoring plans that align with both national legislation and international good practice.</p>
+      <h4>Approach</h4>
+      <p>We identify receptors and pathways, model potential impacts, and propose mitigation and monitoring plans aligned with national legislation and international best practice.</p>
       <div style="margin-top:12px"><a class="btn primary" href="contact.html">Request a Proposal</a></div>
     </div>
   </div>
 </section>
 
-<section id="mobile-lab">
+<!-- ===== Mobile Lab ===== -->
+<section>
   <div class="container grid g-2">
     <div class="card">
       <span class="tag">Mobile Lab</span>
-      <h3>On‑site Air/Noise Testing</h3>
+      <h3>On-site Air & Noise Testing</h3>
       <ul>
         <li>PM, CO, NO₂, O₃, SO₂, H₂S measurements.</li>
         <li>Ambient & indoor air assessments; noise mapping.</li>
         <li>Baseline studies; compliance audits & remediation plans.</li>
       </ul>
       <h4>Instrumentation</h4>
-      <p>Our fleet includes analyzers for particulate and gases, meteorological sensors, sound level meters, and data acquisition with audit trails.</p>
+      <p>Analyzers for particulate and gases, meteorological sensors, sound level meters, and secure data acquisition with audit trails and traceable calibration.</p>
+      <div style="margin-top:12px"><a class="btn ghost" href="mobile-lab.html">Learn more</a></div>
     </div>
     <div class="figure">
-      <img class="media" src="instruments.svg" alt="Instruments and mobile station imagery">
+      <img class="media" src="instruments.webp" alt="Instruments and mobile station">
       <p class="caption">Traceable calibration and secure data capture for credible results.</p>
     </div>
   </div>
 </section>
 
-<section id="pest-control">
+<!-- ===== Pest Control ===== -->
+<section>
   <div class="container grid g-2">
     <div class="figure">
-      <img class="media" src="pest-control.svg" alt="Integrated pest management imagery">
-      <p class="caption">Eco‑conscious IPM for health, food safety, and infrastructure integrity.</p>
+      <img class="media" src="pest-control.webp" alt="Integrated pest management">
+      <p class="caption">Eco-conscious IPM for health, food safety, and infrastructure integrity.</p>
     </div>
     <div class="card">
       <span class="tag">Pest Control</span>
       <h3>Integrated Pest Management</h3>
       <ul>
-        <li>Public‑health & structural pests • Fumigation.</li>
+        <li>Public-health & structural pests, incl. fumigation.</li>
         <li>Emergency response & preventive maintenance.</li>
-        <li>IPM tailored to facility risk & certification needs.</li>
+        <li>Programs tailored to facility risk & certifications.</li>
       </ul>
       <h4>Outcomes</h4>
-      <p>Fewer incidents, optimized chemical use, stronger compliance with safety and food standards.</p>
-      <div style="margin-top:12px"><a class="btn primary" href="contact.html">Get a Site Survey</a></div>
+      <p>Fewer incidents, optimized chemical use, and stronger compliance with safety and food standards.</p>
+      <div style="margin-top:12px"><a class="btn primary" href="pest-control.html">View Pest Control</a></div>
     </div>
   </div>
 </section>
 
-<section id="services-testimonials">
+<!-- ===== Testimonials ===== -->
+<section class="section">
   <div class="container">
-    <h2 style="text-align:center">What Clients Say</h2>
+    <h2 class="title" style="text-align:center">What Clients Say</h2>
     <div class="grid g-3" style="margin-top:16px">
-      <div class="card"><p>“Professional and responsive—the lab team delivered baseline data in half the expected time.”</p><p style="opacity:.85;margin-top:8px"><strong>Environmental Lead</strong>, Real Estate</p></div>
-      <div class="card"><p>“Excellent technical reports; clear enough for both management and regulators.”</p><p style="opacity:.85;margin-top:8px"><strong>QA/QC Supervisor</strong>, Manufacturing</p></div>
-      <div class="card"><p>“IPM training helped our staff maintain hygiene with fewer chemicals.”</p><p style="opacity:.85;margin-top:8px"><strong>Facilities Manager</strong>, Health Sector</p></div>
+      <div class="t-card"><p>“Professional and responsive — the lab team delivered baseline data in half the expected time.”</p><p style="opacity:.85;margin-top:8px"><strong>Environmental Lead</strong>, Real Estate</p></div>
+      <div class="t-card"><p>“Excellent technical reports; clear enough for both management and regulators.”</p><p style="opacity:.85;margin-top:8px"><strong>QA/QC Supervisor</strong>, Manufacturing</p></div>
+      <div class="t-card"><p>“IPM training helped our staff maintain hygiene with fewer chemicals.”</p><p style="opacity:.85;margin-top:8px"><strong>Facilities Manager</strong>, Health Sector</p></div>
     </div>
   </div>
 </section>
 
-<section id="services-faq">
-  <div class="container">
-    <h2 style="text-align:center">FAQ</h2>
-    <div class="container" style="max-width:900px">
-      <details><summary>How quickly can the mobile lab be deployed?</summary><p>We typically mobilize rapidly within the region, subject to project scope and permits.</p></details>
-      <details><summary>Which pollutants do you measure?</summary><p>Commonly PM, NO₂, SO₂, O₃, CO, H₂S, plus noise levels; custom targets available.</p></details>
-      <details><summary>Can you manage permits end‑to‑end?</summary><p>Yes—we prepare studies, records, applications, and liaise with regulators.</p></details>
+<!-- ===== Footer (teal) ===== -->
+<footer class="footer">
+  <div class="f-top">
+    <div class="container f-grid">
+      <div>
+        <h4 class="f-title">Content</h4>
+        <ul class="f-links">
+          <li><a href="services.html">Services Overview</a></li>
+          <li><a href="environmental.html">Environmental Consultancy</a></li>
+          <li><a href="mobile-lab.html">Mobile Lab</a></li>
+          <li><a href="pest-control.html">Pest Control</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="f-title">Company</h4>
+        <ul class="f-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="f-title">Support &amp; Legal</h4>
+        <ul class="f-links">
+          <li><a href="terms.html">Terms &amp; Conditions</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="cookies.html">Cookies Policy</a></li>
+          <li><a href="contact.html">Client Support</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="f-title">Contact</h4>
+        <ul class="f-links">
+          <li>Riyadh, Saudi Arabia</li>
+          <li><a href="tel:+966559906886">+966 55 990 6886</a></li>
+          <li><a href="mailto:info@emtithaal.com">info@emtithaal.com</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="f-mid">
+      <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+        <div>Emtithal Environmental Consulting Projects.</div>
+        <div>Pest Control • Environmental • Fumigation • IPM</div>
+      </div>
     </div>
   </div>
-</section>
 
-  <footer>
-    <div class="container footer-grid">
-      <div>
-        <div class="brand" style="margin-bottom:8px">
-          <div class="logo"><span>E</span></div><strong>Emtithal</strong>
-        </div>
-        <p>Riyadh, King Abdullah Road — Postal Code 13215</p>
-        <p>info@emtithaal.com</p>
-        <div class="pill-row" style="margin-top:8px">
-          <span class="tag">(+966) 112090002</span>
-          <span class="tag">(+966) 559906886</span>
-          <span class="tag">(+966) 562242228</span>
-        </div>
-      </div>
-      <div>
-        <h4>Services</h4>
-        <p><a href="services.html#consultancy">Environmental Consultancy</a></p>
-        <p><a href="services.html#mobile-lab">Mobile Lab</a></p>
-        <p><a href="services.html#pest-control">Pest Control</a></p>
-      </div>
-      <div>
-        <h4>Company</h4>
-        <p><a href="index.html">Home</a></p>
-        <p><a href="about.html">About</a></p>
-        <p><a href="services.html">Services</a></p>
-        <p><a href="contact.html">Contact</a></p>
-      </div>
+  <div class="f-bot">
+    <div class="container btm">
+      <img src="logo-teal.webp" alt="Emtithal Logo" style="height:34px">
+      <div>© <span id="year"></span> Emtithal Environmental Consulting. All rights reserved.</div>
+      <a class="btn primary" href="contact.html">Get Started</a>
     </div>
-    <div class="container" style="display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:20px">
-      <p>© <span class="year"></span> Emtithal Environmental Consulting.</p>
-      <p>Bright • Modern • Clean.</p>
-    </div>
-  </footer>
-  <script defer src="app.js?v=6"></script>
+  </div>
+</footer>
+
+<script>
+/* Header sticky swap */
+const hdr=document.getElementById('siteHeader');
+addEventListener('scroll',()=>hdr.classList.toggle('scrolled', scrollY>10),{passive:true});
+
+/* Mobile menu */
+const navToggle=document.getElementById('navToggle');
+const mainMenu=document.getElementById('mainMenu');
+navToggle?.addEventListener('click',()=>{
+  const open=mainMenu.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded',open);
+});
+
+/* Year */
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
