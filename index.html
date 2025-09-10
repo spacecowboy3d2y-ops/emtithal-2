@@ -3,20 +3,22 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Emtithal Pest Control — Fast, Safe & Guaranteed</title>
-<meta name="description" content="Fast, safe, and guaranteed pest control for homes, businesses, and industry across Saudi Arabia. NCEC Licensed • NPMA Member."/>
+<title>Emtithal Consulting — Environmental • Mobile Lab • Pest Control</title>
+<meta name="description" content="Environmental consulting, mobile lab testing, and pest control across Saudi Arabia. Fast, auditable, and compliant with regulator requirements."/>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
-
+<link rel="icon" href="favicon.webp" type="image/webp"/>
 <style>
 :root{
+  /* Palette: teal + navy */
   --teal-50:#e9f7f4; --teal-100:#d2efe9; --teal-200:#b1e4da; --teal-300:#86d3c6;
   --teal-400:#4fbcae; --teal-500:#19a897; --teal-600:#12887a; --teal-700:#0f6f63;
   --teal-800:#0b5650; --teal-900:#083a37;
-  --blue:#2a8bd8;
-  --ink:#0b0c11; --ink-on-dark:#ecf6f5;
-  --muted:#7f9092; --card:#121819; --line:#1d2628;
-  --shadow:0 16px 44px rgba(0,0,0,.28);
-  --header-h:72px; --gap:22px;
+  --navy-900:#0b1220;
+
+  --ink:#0e1415; --ink-on-dark:#ecf6f5;
+  --line:#e6f1ef; --card:#ffffff; --bg:#f7fbfb;
+  --shadow:0 16px 44px rgba(0,0,0,.16);
+  --header-h:72px; --gap:22px; --dd-hide:.5s;
 }
 
 /* base */
@@ -24,34 +26,32 @@
 html{scroll-behavior:smooth}
 body{
   margin:0; font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  color:#0e1516; background:
-    radial-gradient(90vw 60vh at 10% -10%, var(--teal-50), transparent 60%),
-    radial-gradient(80vw 70vh at 100% 10%, #eef7f6, transparent 60%),
-    #f6fbfa;
-  padding-top:var(--header-h);
+  color:var(--ink); background:
+    radial-gradient(80vw 60vh at 0% -10%, var(--teal-50), transparent 60%),
+    radial-gradient(60vw 60vh at 100% 0%, #eef7f6, transparent 60%),
+    var(--bg);
   -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+  padding-top:var(--header-h);
 }
-img{max-width:100%;display:block}
 a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
 .container{width:min(1160px,92%);margin-inline:auto}
 .section{padding:84px 0}
-.title{margin:0 0 12px;font-size:clamp(1.8rem,2.1vw + 1rem,2.6rem);color:#0f1216}
+.title{margin:0 0 10px;font-size:clamp(1.9rem,2.1vw+1rem,2.7rem);color:#0f2a2a}
 .lead{color:#3c5254}
-.btn{display:inline-block;padding:13px 22px;border-radius:999px;font-weight:700;box-shadow:0 10px 24px rgba(0,0,0,.25)}
-.btn-primary{background:linear-gradient(90deg,var(--teal-500),var(--teal-700));color:#fff}
-.btn-ghost{background:#0e2a3b10;border:1px solid #0e2a3b22}
+.btn{display:inline-block;padding:12px 20px;border-radius:999px;font-weight:700;box-shadow:0 10px 24px rgba(0,0,0,.18)}
+.btn.primary{background:linear-gradient(90deg,var(--teal-500),var(--teal-700));color:#fff}
+.btn.ghost{border:1px solid #0b4e4a30;background:#0b4e4a10;color:#0b5650}
 
-/* ================= HEADER ================= */
+/* ===== Header (teal -> white on scroll) ===== */
 .hdr{
   position:fixed; inset:0 0 auto; height:72px; z-index:1000; display:flex; align-items:center;
-  background:linear-gradient(90deg, var(--teal-600), var(--teal-800));
-  color:var(--ink-on-dark);
-  box-shadow:0 8px 24px rgba(0,0,0,.35);
-  transition:background .2s,height .2s,color .2s, box-shadow .2s, border-color .2s;
+  background:linear-gradient(90deg, var(--teal-600), var(--teal-800)); color:var(--ink-on-dark);
+  box-shadow:0 8px 24px rgba(0,0,0,.28); transition:background .2s,height .2s,color .2s,box-shadow .2s,border .2s;
 }
 .hdr.scrolled{
   height:64px; background:#ffffff; color:var(--teal-800);
-  box-shadow:0 8px 24px rgba(0,0,0,.10); border-bottom:1px solid #e7eff0;
+  border-bottom:1px solid #e7eff0; box-shadow:0 8px 24px rgba(0,0,0,.10);
 }
 .hdr .inner{width:min(1160px,92%);margin-inline:auto;display:flex;align-items:center;gap:18px;justify-content:space-between}
 .brand{display:flex;align-items:center;gap:10px}
@@ -62,78 +62,94 @@ a{text-decoration:none;color:inherit}
 
 .nav ul{display:flex;gap:24px;list-style:none;margin:0;padding:0;align-items:center}
 .nav a{display:inline-block;padding:8px 12px;border-radius:10px;font-weight:600}
-.hdr:not(.scrolled) .nav a:hover{background:color-mix(in srgb,#ffffff 10%, transparent); color:#fff}
+.hdr:not(.scrolled) .nav a:hover{background:color-mix(in srgb,#ffffff 14%, transparent); color:#fff}
 .hdr.scrolled .nav a{color:var(--teal-800)}
 .hdr.scrolled .nav a:hover{background:#f3fbfa; outline:1px solid #e1f1ef}
 
+/* dropdown */
+.drop{position:relative}
+.drop-btn{display:flex;align-items:center;gap:6px}
+.drop img{width:14px;height:14px;filter:invert(1)}
+.hdr.scrolled .drop img{filter:none}
+.panel{
+  position:absolute; top:calc(100% + 10px); left:0; min-width:260px;
+  background:#fff; border:1px solid #e6edf1; border-radius:12px; padding:8px;
+  box-shadow:0 18px 40px rgba(10,20,30,.14);
+  opacity:0; visibility:hidden; transform:translateY(8px); pointer-events:none;
+  transition:opacity .12s ease, transform .12s ease, visibility 0s linear .12s;
+}
+.panel a{display:block;padding:10px 12px;border-radius:8px;color:var(--teal-800);font-weight:700}
+.panel a:hover{background:var(--teal-800);color:#fff}
+.drop:hover .panel{opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto;transition-delay:0s}
+
+/* mobile nav */
 .nav-toggle{display:none;background:#0b5650;color:#fff;border:0;padding:10px 14px;border-radius:10px;font-weight:700}
 .hdr.scrolled .nav-toggle{background:#eef4f4;color:var(--teal-800)}
 @media (max-width:760px){
   .nav-toggle{display:inline-block}
-  .nav ul{display:none;position:absolute;top:72px;left:4%;right:4%;background:var(--teal-800);padding:14px;border-radius:12px;flex-direction:column;gap:12px;box-shadow:var(--shadow)}
+  .nav ul{display:none;position:absolute;top:72px;left:4%;right:4%;background:#0b5650;border:1px solid #0b5650;padding:14px;border-radius:12px;flex-direction:column;gap:12px;box-shadow:var(--shadow)}
   .hdr.scrolled .nav ul{background:#fff;border:1px solid #e5f0ef}
   .nav ul.open{display:flex}
+  .drop .panel{position:static;opacity:1;visibility:visible;transform:none;pointer-events:auto;border:0;box-shadow:none;padding:0;background:transparent}
+  .panel a{padding:8px 12px}
 }
 
-/* ================= HERO ================= */
-.hero{padding:48px 0 12px}
-.grid-hero{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:start}
-@media (max-width:980px){.grid-hero{grid-template-columns:1fr}}
-.badge{display:inline-block;padding:8px 14px;border-radius:999px;background:#0b565015;color:#0b5650;border:1px solid #0b565030;font-weight:700}
-h1{margin:.35rem 0 10px;font-weight:800;letter-spacing:.2px;color:#0f2a2a}
-.hero p{margin:0 0 20px;color:#3c5254}
-.pills{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
-.pill{background:#ffffff;border:1px dashed #cfe7e5;border-radius:12px;padding:12px 14px;font-weight:700;color:#214544;box-shadow:0 6px 18px rgba(6,40,40,.05)}
-@media (max-width:620px){.pills{grid-template-columns:1fr}}
-
-.form-card{
-  background:#ffffff; border:1px solid #e6f1ef; border-radius:18px; box-shadow:0 30px 70px rgba(0,0,0,.18);
-  padding:18px; position:relative;
+/* ===== Hero ===== */
+.hero{
+  padding:58px 0 22px; background:
+    radial-gradient(560px 220px at 12% 20%, #eaf8f6 0%, transparent 70%),
+    linear-gradient(180deg, #ffffff 0%, #f7fbfb 100%);
+  border-bottom:1px solid var(--line);
 }
-.form-card h3{margin:0 0 8px;color:#0f2a2a}
-.form-note{color:#6a7a7c;font-size:.95rem;margin-bottom:12px}
-label{font-weight:700;font-size:.95rem;margin-bottom:6px;display:block;color:#1f3838}
-input,textarea{width:100%;border:1px solid #d9e9e7;background:#f8fbfb;padding:12px;border-radius:12px;font:inherit;outline:none;color:#173030}
-input:focus,textarea:focus{border-color:var(--teal-500);box-shadow:0 0 0 4px #19a89722}
-textarea{min-height:140px;resize:vertical}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media (max-width:560px){.row{grid-template-columns:1fr}}
-.form-actions{display:flex;gap:12px;align-items:center;margin-top:12px}
-.small{font-size:.9rem;color:#7a8a8a}
-
-/* ================= CLIENTS (looping carousel) ================= */
-.clients{padding:64px 0 12px}
-.clients .muted{color:#5a6d6e}
-.carousel{position:relative;overflow:hidden}
-.track{display:flex;gap:18px;will-change:transform}
-.c-item{
-  flex:0 0 240px; display:flex; align-items:center; gap:12px;
-  background:#ffffff;border:1px solid #e6f1ef;border-radius:16px;padding:14px 16px;
-  box-shadow:0 10px 26px rgba(0,0,0,.08)
+.hero-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center}
+.hero h1{margin:0 0 10px;font-size:clamp(2rem,2.2vw+1rem,2.9rem);letter-spacing:.2px}
+.hero h1 span{background:linear-gradient(90deg,var(--teal-600),var(--teal-800));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{margin:0 0 16px;color:#3c5254}
+.hero-art{
+  width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:16px;
+  box-shadow:0 18px 44px rgba(0,0,0,.12); border:1px solid #eaf3f1
 }
-.c-logo{width:38px;height:38px;border-radius:10px;background:#f1faf8;object-fit:cover}
-.c-name{font-weight:700;color:#1c3838}
-.c-prev,.c-next{
-  position:absolute; top:50%; transform:translateY(-50%); z-index:2; width:42px;height:42px;border-radius:12px;border:0;
-  display:grid;place-items:center; background:var(--teal-800); box-shadow:0 12px 26px rgba(0,0,0,.25); cursor:pointer
-}
-.c-prev{left:-4px}.c-next{right:-4px}
-.c-prev img,.c-next img{width:18px;height:18px;filter:invert(1)}
-/* hide native scrollbar if any */
-.carousel::-webkit-scrollbar{display:none}
+@media (max-width:980px){ .hero-inner{grid-template-columns:1fr} }
 
-/* ================= FAQ ================= */
-.faq{padding:64px 0}
-.faq-grid{max-width:900px;margin:0 auto;display:grid;gap:14px}
-details{
-  background:#ffffff;border:1px solid #e6f1ef;border-radius:14px;padding:14px 16px;
-  box-shadow:0 10px 22px rgba(0,0,0,.06)
-}
-summary{cursor:pointer;font-weight:800;color:#103a38}
-details[open]{border-color:#cce9e5}
-details p{margin:10px 0 0;color:#3b5152}
+/* ===== Services cards ===== */
+.grid{display:grid;gap:var(--gap)}
+.grid-4{grid-template-columns:repeat(4,1fr)}
+@media (max-width:980px){.grid-4{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.grid-4{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);transition:transform .18s, box-shadow .18s}
+.card:hover{transform:translateY(-4px);box-shadow:0 18px 46px rgba(0,0,0,.2)}
+.thumb{width:100%;height:200px;object-fit:cover}
+.card-body{padding:16px}
+.card h3{margin:.2rem 0 6px;color:#0f2a2a}
+.card p{margin:0;color:#3c5254}
 
-/* ================= FOOTER ================= */
+/* ===== Values strip ===== */
+.strip{background:linear-gradient(180deg,#ffffff 0%, #f0fbf8 100%); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
+.pills{display:flex;gap:12px;flex-wrap:wrap}
+.pill{padding:10px 14px;border-radius:999px;font-weight:800;background:#0b565015;border:1px solid #0b565030;color:#0b5650}
+
+/* ===== Clients Carousel (mid speed) ===== */
+.logo-slider{overflow:hidden}
+.logo-track{display:flex;align-items:center;gap:28px;will-change:transform;animation:marquee var(--marqueeDur, 48s) linear infinite}
+.logo-slider:hover .logo-track{animation-play-state:paused}
+.logo-item{flex:0 0 20%;max-width:20%;padding:12px 16px;background:#fff;border:1px solid #e9f3f2;border-radius:14px;display:grid;place-items:center}
+.logo-item img{width:100%;height:auto;object-fit:contain;filter:grayscale(100%);opacity:.9;transition:filter .3s,opacity .3s,transform .25s}
+.logo-item img:hover{filter:none;opacity:1;transform:translateY(-2px)}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(calc(-1 * var(--loopW,1000px)))}}
+
+/* ===== Location Map ===== */
+.map-wrap{background:#fff;border:1px solid #e6f1ef;border-radius:18px;overflow:hidden;box-shadow:0 18px 42px rgba(0,0,0,.12)}
+.map-frame{width:100%;height:420px;border:0;display:block;filter:saturate(1.05)}
+.map-cta{display:flex;gap:10px;align-items:center;justify-content:flex-end;padding:12px;background:linear-gradient(180deg,#f6fbfa,#ffffff);border-top:1px solid #e9f3f2}
+@media (max-width:560px){.map-frame{height:360px}.map-cta{flex-direction:column;align-items:stretch}}
+
+/* ===== FAQ ===== */
+.faq{max-width:900px;margin:0 auto}
+details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;box-shadow:0 10px 30px rgba(0,0,0,.06)}
+details+details{margin-top:10px}
+summary{cursor:pointer;font-weight:800;color:#0b3e3a}
+
+/* ===== Footer (teal) ===== */
 .footer{margin-top:48px;background:linear-gradient(180deg,var(--teal-800) 0%, var(--teal-700) 100%);color:#eaf7f4}
 .f-top{padding:26px 0}
 .f-grid{display:grid;gap:36px;grid-template-columns:repeat(4,1fr)}
@@ -147,244 +163,201 @@ details p{margin:10px 0 0;color:#3b5152}
 .f-bot{background:#083a37}
 .btm{padding:16px 0;display:flex;align-items:center;justify-content:space-between;gap:12px}
 @media (max-width:700px){.btm{flex-direction:column;text-align:center}}
-.s-row{display:flex;gap:10px}
-.s-btn{width:42px;height:42px;display:grid;place-items:center;border-radius:10px;border:1px solid rgba(255,255,255,.18);background:#0c3f3a}
-.s-btn img{width:18px;height:18px;filter:invert(1)}
-.footer .cta{background:transparent}
 
-/* Back to Top (icon img placeholder) */
+/* Back to Top button (you can replace content with your icon) */
 #backToTop{
-  position:fixed; right:18px; bottom:18px; z-index:1100; width:52px; height:52px; border:0; border-radius:999px;
-  background:linear-gradient(140deg,var(--teal-600),var(--teal-800)); color:#fff; display:grid; place-items:center;
-  box-shadow:0 14px 34px rgba(0,0,0,.35); opacity:0; pointer-events:none; transform:translateY(10px);
-  transition:opacity .2s ease, transform .2s ease, filter .15s ease;
+  position:fixed; right:18px; bottom:18px; z-index:1100;
+  width:48px; height:48px; border:0; border-radius:999px; display:grid; place-items:center;
+  background:linear-gradient(135deg,var(--teal-600),var(--teal-800)); color:#fff;
+  box-shadow:0 10px 24px rgba(0,0,0,.28); opacity:0; pointer-events:none; transform:translateY(10px);
+  transition:opacity .2s, transform .2s, filter .15s;
 }
 #backToTop.show{opacity:1; pointer-events:auto; transform:none}
 #backToTop:hover{filter:brightness(1.06)}
-#backToTop img{width:22px;height:22px;filter:invert(1)}
-
-  /* === Services image cards === */
-.service-grid{
-  display:grid; gap:18px;
-  grid-template-columns:repeat(4,1fr);
-}
-@media (max-width:980px){ .service-grid{grid-template-columns:repeat(2,1fr)} }
-@media (max-width:560px){ .service-grid{grid-template-columns:1fr} }
-
-.svc-card{
-  position:relative; overflow:hidden; display:block;
-  border-radius:16px; background:#fff; border:1px solid #e6f1ef;
-  box-shadow:0 12px 28px rgba(0,0,0,.10); transition:transform .18s ease, box-shadow .18s ease;
-}
-.svc-card:hover{ transform:translateY(-4px); box-shadow:0 18px 42px rgba(0,0,0,.16); }
-
-.svc-card img{
-  width:100%; height:220px; object-fit:cover; display:block;
-  transform:scale(1); transition:transform .5s ease;
-}
-.svc-card:hover img{ transform:scale(1.05); }
-
-.svc-chip{
-  position:absolute; left:12px; top:12px;
-  padding:6px 10px; border-radius:999px; font-weight:800; font-size:.82rem;
-  color:#fff; background:linear-gradient(90deg,var(--teal-600),var(--teal-800)); 
-  box-shadow:0 6px 16px rgba(0,0,0,.15);
-}
-
-.svc-body{ padding:14px 16px 16px }
-.svc-body h3{ margin:0 0 6px; color:#0f2a2a; font-size:1.05rem }
-.svc-body p{ margin:0; color:#3c5254; font-size:.95rem }
-
 </style>
 </head>
 <body id="top">
 
-<!-- ========== HEADER ========== -->
+<!-- ===== HEADER ===== -->
 <header class="hdr" id="siteHeader">
   <div class="inner">
     <a class="brand" href="index.html" aria-label="Emtithal Home">
-      <!-- swap on sticky: light on teal, dark on white -->
       <img class="logo-light" src="logo-04.webp" alt="Emtithal Logo">
       <img class="logo-dark"  src="logo-01.webp" alt="Emtithal Logo (dark)">
     </a>
 
     <nav class="nav" aria-label="Primary">
-      <button id="navToggle" class="nav-toggle" aria-expanded="false" aria-controls="mainMenu">☰</button>
-      <ul id="mainMenu">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#clients">Clients</a></li>
-        <li><a href="#faq">FAQ</a></li>
+      <button id="navToggle" class="nav-toggle" aria-expanded="false" aria-controls="mainMenu">Menu</button>
+      <ul id="mainMenu" role="menubar">
+        <li><a href="index.html" aria-current="page">Home</a></li>
+        <li><a href="about.html">About</a></li>
+
+        <li class="drop">
+          <a class="drop-btn" href="services.html" aria-expanded="false">
+            Services <img src="chevron-down.webp" alt="">
+          </a>
+          <div class="panel" role="menu">
+            <a class="drop-link" href="environmental.html">Environmental Consultancy</a>
+            <a class="drop-link" href="mobile-lab.html">Mobile Lab</a>
+            <a class="drop-link" href="pest-control.html">Pest Control</a>
+          </div>
+        </li>
+
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
 
-    <a class="btn btn-primary" href="#request">Get a Quote</a>
+    <a class="btn primary" href="contact.html">Get a Quote</a>
   </div>
 </header>
 
-<!-- ========== HERO ========== -->
+<!-- ===== HERO ===== -->
 <section class="hero">
-  <div class="container grid-hero">
+  <div class="container hero-inner">
     <div>
-      <span class="badge">NCEC Licensed • NPMA Member</span>
-      <h1>Fast, Safe &amp; Guaranteed Pest Control</h1>
-      <p class="lead">Auditable programs, clear documentation, and rapid response—protecting homes, businesses, and industry across Saudi Arabia.</p>
-
-      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
-        <a class="btn btn-primary" href="#request">Request a Free Inspection</a>
-        <a class="btn btn-ghost" href="#services">Explore Services</a>
-      </div>
-
-      <!-- plain pills (no checkmarks) -->
-      <div class="pills">
-        <div class="pill">ISO-aligned QA/QC</div>
-        <div class="pill">24h Response</div>
-        <div class="pill">KSA Coverage</div>
-        <div class="pill">Monthly Programs</div>
+      <h1>Compliance Made Simple — <span>Environmental, Mobile Lab & IPM</span></h1>
+      <p class="lead">Auditable programs, rapid assessments, and clear documentation for regulators and your teams — across Saudi Arabia.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
+        <a class="btn primary" href="contact.html">Request a Free Inspection</a>
+        <a class="btn ghost" href="services.html">Explore Services</a>
       </div>
     </div>
-
-    <aside id="request" class="form-card">
-      <h3>Need help right now?</h3>
-      <div class="form-note">Send a brief and we’ll assign a specialist.</div>
-
-      <form id="quoteForm">
-        <label for="issue">Issue</label>
-        <textarea id="issue" name="issue" placeholder="Termites in villa, kitchen roaches, warehouse rodents, etc."></textarea>
-
-        <div class="row" style="margin-top:8px">
-          <div>
-            <label for="name">Name</label>
-            <input id="name" name="name" type="text" placeholder="Your name">
-          </div>
-          <div>
-            <label for="phone">Phone</label>
-            <input id="phone" name="phone" type="tel" placeholder="+966 …">
-          </div>
-        </div>
-
-        <div class="form-actions">
-          <button type="submit" class="btn btn-primary">Send</button>
-          <span class="small">We reply shortly.</span>
-        </div>
-      </form>
-    </aside>
+    <img class="hero-art" src="bg-2.webp" alt="Field team and mobile monitoring">
   </div>
 </section>
 
-<!-- ========== SERVICES (with images) ========== -->
+<!-- ===== SERVICES ===== -->
 <section class="section" id="services">
   <div class="container">
     <h2 class="title">Our Services</h2>
-    <p class="lead">Standardised, audit-ready pest solutions with a proven track record.</p>
+    <p class="lead" style="margin-bottom:18px">Right-sized programs with KPIs, roles, and calendars — aligned with your sector norms.</p>
 
-    <div class="service-grid" style="margin-top:18px">
-      <a class="svc-card" href="services.html#residential" aria-label="Residential Pest Control">
-        <span class="svc-chip">Residential</span>
-        <img src="service-1.webp" alt="Residential pest control treatment" loading="lazy">
-        <div class="svc-body">
-          <h3>Residential Pest Control</h3>
-          <p>Safe treatments for villas & apartments: cockroaches, ants, termites, bed bugs.</p>
+    <div class="grid grid-4">
+      <a class="card" href="pest-control.html" aria-label="Residential & Commercial Pest Control">
+        <img class="thumb" src="svc-residential.webp" alt="Residential & commercial pest control">
+        <div class="card-body">
+          <h3>Pest Control</h3>
+          <p>IPM for homes, restaurants, hotels & industry — child & pet safe.</p>
         </div>
       </a>
 
-      <a class="svc-card" href="services.html#commercial" aria-label="Commercial Pest Control">
-        <span class="svc-chip">Commercial</span>
-        <img src="service-2.webp" alt="Commercial pest control in a restaurant kitchen" loading="lazy">
-        <div class="svc-body">
-          <h3>Commercial Programs</h3>
-          <p>Discreet, effective protection for offices, restaurants, hotels, and retail.</p>
+      <a class="card" href="environmental.html" aria-label="Environmental Consultancy">
+        <img class="thumb" src="svc-environmental.webp" alt="Environmental consultancy and permits">
+        <div class="card-body">
+          <h3>Environmental Consultancy</h3>
+          <p>EIA & audits, CEMP/DEMP, permitting, and technical reporting.</p>
         </div>
       </a>
 
-      <a class="svc-card" href="services.html#industrial" aria-label="Industrial & Fumigation">
-        <span class="svc-chip">Industrial</span>
-        <img src="service-3.webp" alt="Industrial fumigation and warehouse control" loading="lazy">
-        <div class="svc-body">
-          <h3>Industrial &amp; Fumigation</h3>
-          <p>Specialized services for factories & warehouses—compliant with Saudi regs.</p>
+      <a class="card" href="mobile-lab.html" aria-label="Mobile Lab Testing">
+        <img class="thumb" src="svc-industrial.webp" alt="Mobile lab monitoring">
+        <div class="card-body">
+          <h3>Mobile Lab</h3>
+          <p>On-site air & noise testing — PM, gases, met data, and audits.</p>
         </div>
       </a>
 
-      <a class="svc-card" href="environmental.html" aria-label="Environmental & Mobile Lab">
-        <span class="svc-chip">Environmental</span>
-        <img src="service-4.webp" alt="Mobile lab and environmental monitoring" loading="lazy">
-        <div class="svc-body">
-          <h3>Environmental &amp; Mobile Lab</h3>
-          <p>Air/noise monitoring, EIA & audits, waste oversight, and mobile lab testing.</p>
+      <a class="card" href="services.html" aria-label="Industrial & Fumigation">
+        <img class="thumb" src="svc-commercial.webp" alt="Industrial fumigation and hygiene">
+        <div class="card-body">
+          <h3>Industrial & Fumigation</h3>
+          <p>Specialized treatments for warehouses & factories — compliant.</p>
         </div>
       </a>
     </div>
   </div>
 </section>
 
+<!-- ===== VALUE STRIP ===== -->
+<section class="strip">
+  <div class="container" style="padding:28px 0">
+    <div class="pills">
+      <span class="pill">13+ Years Experience</span>
+      <span class="pill">Audit-Ready Documentation</span>
+      <span class="pill">Rapid Response</span>
+      <span class="pill">ISO-Aligned Systems</span>
+      <span class="pill">NCEC Licensed</span>
+    </div>
+  </div>
+</section>
 
-<!-- ========== CLIENTS (looping) ========== -->
-<section class="clients" id="clients">
+<!-- ===== CLIENTS (mid-speed loop; no bottom bar) ===== -->
+<section class="section" aria-labelledby="clientsTitle">
   <div class="container">
-    <h2 class="title">Trusted by Leading Organizations</h2>
-    <p class="muted" style="margin:4px 0 18px">A selection of entities we’ve supported with programs and audits.</p>
+    <h2 id="clientsTitle" class="title">Trusted by Leading Organizations</h2>
+    <p class="lead" style="margin-bottom:10px">A selection of entities we’ve supported through programs and audits.</p>
 
-      <div class="track">
-        <!-- duplicate set is created in JS for a seamless loop -->
-        <div class="c-item"><img class="c-logo" src="saudi-electric.webp" alt=""><div class="c-name">Client 1</div></div>
-        <div class="c-item"><img class="c-logo" src="royal-comission.webp" alt=""><div class="c-name">Client 2</div></div>
-        <div class="c-item"><img class="c-logo" src="mac.webp" alt=""><div class="c-name">Client 3</div></div>
-        <div class="c-item"><img class="c-logo" src="al-ojiami.webp" alt=""><div class="c-name">Client 4</div></div>
-        <div class="c-item"><img class="c-logo" src="islamic-ministiru.webp" alt=""><div class="c-name">Client 5</div></div>
-        <div class="c-item"><img class="c-logo" src="vision.webp" alt=""><div class="c-name">Client 6</div></div>
+    <div class="logo-slider" id="clientSlider" aria-label="Client logos slider">
+      <div class="logo-track">
+        <!-- Replace these images with your actual client logos (root-level .webp files) -->
+        <div class="logo-item"><img src="client-1.webp" alt="Client 1"></div>
+        <div class="logo-item"><img src="client-2.webp" alt="Client 2"></div>
+        <div class="logo-item"><img src="client-3.webp" alt="Client 3"></div>
+        <div class="logo-item"><img src="client-4.webp" alt="Client 4"></div>
+        <div class="logo-item"><img src="client-5.webp" alt="Client 5"></div>
       </div>
-
-<!-- ========== FAQ ========== -->
-<section class="faq section" id="faq">
-  <div class="container">
-    <h2 class="title">Frequently Asked Questions</h2>
-    <div class="faq-grid">
-      <details>
-        <summary>How fast can you visit after I book?</summary>
-        <p>We offer same-day or next-day visits across major cities in KSA. Urgent cases are prioritized within 24 hours.</p>
-      </details>
-      <details>
-        <summary>Are your treatments safe for children and pets?</summary>
-        <p>Yes. We use IPM methods and approved products with strict application controls. We’ll brief you on any temporary re-entry times.</p>
-      </details>
-      <details>
-        <summary>Do you provide documentation for audits?</summary>
-        <p>Absolutely—SOPs, device maps, service reports, CAPA actions, and trending suitable for ISO, HACCP, and brand audits.</p>
-      </details>
-      <details>
-        <summary>What pests do you cover?</summary>
-        <p>Cockroaches, ants, rodents, termites, flies/mosquitoes, stored-product insects, and more—including industrial fumigation.</p>
-      </details>
-      <details>
-        <summary>Which areas do you serve?</summary>
-        <p>Nationwide coverage with local teams in Riyadh, Jeddah, Dammam/Khobar, and additional cities by appointment.</p>
-      </details>
     </div>
   </div>
 </section>
 
-<!-- ========== FOOTER (teal) ========== -->
+<!-- ===== LOCATION MAP ===== -->
+<section class="section" id="location">
+  <div class="container">
+    <h2 class="title">Find Us</h2>
+    <p class="lead">Head office in Riyadh — serving clients across Saudi Arabia.</p>
+
+    <div class="map-wrap" style="margin-top:14px">
+      <iframe
+        class="map-frame"
+        loading="lazy"
+        allowfullscreen
+        referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps?q=Riyadh%20Saudi%20Arabia&z=12&output=embed">
+      </iframe>
+      <div class="map-cta">
+        <a class="btn ghost" target="_blank" rel="noopener"
+           href="https://maps.google.com/?q=Riyadh%20Saudi%20Arabia">Open in Google Maps</a>
+        <a class="btn primary" target="_blank" rel="noopener"
+           href="https://www.google.com/maps/dir/?api=1&destination=Riyadh%20Saudi%20Arabia">Get Directions</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="section" id="faq">
+  <div class="container">
+    <h2 class="title" style="text-align:center">FAQ</h2>
+    <div class="faq" style="margin-top:14px">
+      <details><summary>How fast can you attend urgent issues?</summary><p>Same-day where possible in major cities. We prioritize health & safety risks and food-safety facilities.</p></details>
+      <details><summary>Are your methods safe for children and pets?</summary><p>Yes. We follow IPM principles, minimize chemical load, and select products with appropriate safety profiles.</p></details>
+      <details><summary>Do you provide audit-ready documentation?</summary><p>Yes—SOPs, registers, monitoring logs, and CAPA plans aligned with regulator language.</p></details>
+      <details><summary>Which pollutants do you measure on-site?</summary><p>PM, CO, NO₂, O₃, SO₂, H₂S, noise levels, plus met data. Custom targets available per project.</p></details>
+      <details><summary>Can you manage EIA and permit applications?</summary><p>End-to-end: study scoping, assessments, submissions, and follow-ups with authorities.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
 <footer class="footer">
   <div class="f-top">
     <div class="container f-grid">
       <div>
         <h4 class="f-title">Content</h4>
         <ul class="f-links">
-          <li><a href="#services">Popular Services</a></li>
-          <li><a href="#clients">Clients</a></li>
-          <li><a href="contact.html">Request Service</a></li>
-          <li><a href="services.html">Before &amp; After</a></li>
+          <li><a href="services.html">Services Overview</a></li>
+          <li><a href="environmental.html">Environmental Consultancy</a></li>
+          <li><a href="mobile-lab.html">Mobile Lab</a></li>
+          <li><a href="pest-control.html">Pest Control</a></li>
         </ul>
       </div>
       <div>
-        <h4 class="f-title">Information</h4>
+        <h4 class="f-title">Company</h4>
         <ul class="f-links">
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="services.html">Our Services</a></li>
-          <li><a href="contact.html">Service Areas</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
           <li><a href="projects.html">Projects</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
       <div>
@@ -397,13 +370,12 @@ details p{margin:10px 0 0;color:#3b5152}
         </ul>
       </div>
       <div>
-        <h4 class="f-title">Connect with us</h4>
-        <div class="s-row">
-          <a class="s-btn" href="#" aria-label="Facebook"><img src="icon-fb.webp" alt=""></a>
-          <a class="s-btn" href="#" aria-label="Instagram"><img src="icon-ig.webp" alt=""></a>
-          <a class="s-btn" href="#" aria-label="LinkedIn"><img src="icon-li.webp" alt=""></a>
-          <a class="s-btn" href="https://wa.me/966559906886" target="_blank" rel="noopener" aria-label="WhatsApp"><img src="icon-wa.webp" alt=""></a>
-        </div>
+        <h4 class="f-title">Contact</h4>
+        <ul class="f-links">
+          <li>Riyadh, Saudi Arabia</li>
+          <li><a href="tel:+966559906886">+966 55 990 6886</a></li>
+          <li><a href="mailto:info@emtithaal.com">info@emtithaal.com</a></li>
+        </ul>
       </div>
     </div>
 
@@ -418,21 +390,21 @@ details p{margin:10px 0 0;color:#3b5152}
   <div class="f-bot">
     <div class="container btm">
       <img src="logo-teal.webp" alt="Emtithal Logo" style="height:34px">
-      <div>&copy; 2025 Emtithal Pest Control. All rights reserved. · Developed by <a href="mailto:ismailderia123@gmail.com" style="color:#fff;text-decoration:underline">Ismail Deria</a></div>
-      <a class="btn btn-primary" href="#request">Get Started</a>
+      <div>© <span id="year"></span> Emtithal Consulting. All rights reserved.</div>
+      <a class="btn primary" href="contact.html">Get Started</a>
     </div>
   </div>
 </footer>
 
-<!-- Back to Top (you’ll replace the image file) -->
-<a id="backToTop" href="#top" aria-label="Back to top"><img src="backtotop.webp" alt=""></a>
+<!-- Back to Top (you can place your icon inside) -->
+<button id="backToTop" aria-label="Back to top" title="Back to top">↑</button>
 
 <script>
-/* Header sticky appearance */
+/* Header sticky swap */
 const hdr=document.getElementById('siteHeader');
 addEventListener('scroll',()=>hdr.classList.toggle('scrolled', scrollY>10),{passive:true});
 
-/* Mobile nav toggle */
+/* Mobile menu */
 const navToggle=document.getElementById('navToggle');
 const mainMenu=document.getElementById('mainMenu');
 navToggle?.addEventListener('click',()=>{
@@ -440,61 +412,33 @@ navToggle?.addEventListener('click',()=>{
   navToggle.setAttribute('aria-expanded',open);
 });
 
-/* Back to Top visibility */
-const back=document.getElementById('backToTop');
-addEventListener('scroll',()=>{ back.classList.toggle('show', scrollY>450); },{passive:true});
-
-/* Form submit to WhatsApp / mail */
-function isMobile(){ return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent); }
-document.getElementById('quoteForm').addEventListener('submit',function(e){
-  e.preventDefault();
-  const d=Object.fromEntries(new FormData(this).entries());
-  const msg=`Free Inspection Request:
-Issue: ${d.issue||''}
-Name: ${d.name||''}
-Phone: ${d.phone||''}`;
-  if(isMobile()){
-    window.open(`https://wa.me/966559906886?text=${encodeURIComponent(msg)}`,'_blank');
-  }else{
-    const subject=encodeURIComponent('Free Inspection Request');
-    const body=encodeURIComponent(msg);
-    window.location.href=`mailto:info@emtithaal.com?subject=${subject}&body=${body}`;
-  }
-});
-
-/* KSA phone helper */
-const phone=document.getElementById('phone');
-phone?.addEventListener('input',e=>{
-  let v=e.target.value.replace(/\D+/g,'');
-  if(v.startsWith('966')) v='+'+v; else if(v.startsWith('0')) v='+966'+v.slice(1);
-  if(!v.startsWith('+966')) v='+966'+v;
-  e.target.value=v.replace(/^\+966(\d{0,3})(\d{0,3})(\d{0,4}).*$/, (m,a,b,c)=>['+966',a&&' '+a,b&&' '+b,c&&' '+c].filter(Boolean).join(''));
-});
-
-/* Clients carousel: seamless loop, mid speed */
+/* Clients marquee — seamless mid-speed loop */
 (function(){
-  const wrap=document.getElementById('clientCarousel'); if(!wrap) return;
-  const track=wrap.querySelector('.track');
-  const prev=wrap.querySelector('.c-prev'); const next=wrap.querySelector('.c-next');
-  const originals=[...track.children]; originals.forEach(n=>track.appendChild(n.cloneNode(true)));
-  let x=0, last, paused=false; let speed=0.18; // px/ms -> mid speed
-
-  function w(){ return originals[0]?.getBoundingClientRect().width + 18 /*gap*/; }
-  let slideW=w(), setW=slideW*originals.length;
-
-  function tick(ts){
-    if(last==null) last=ts; const dt=ts-last; last=ts;
-    if(!paused){ x-=speed*dt; if(x<=-setW) x+=setW; track.style.transform=`translateX(${x}px)`; }
-    requestAnimationFrame(tick);
+  const slider=document.getElementById('clientSlider'); if(!slider) return;
+  const GAP=28; const track=slider.querySelector('.logo-track');
+  const originals=Array.from(track.children).map(n=>n.cloneNode(true));
+  function setWidth(nodes){const rects=nodes.map(n=>n.getBoundingClientRect().width);let w=0;rects.forEach((rw,i)=>{w+=rw;if(i)w+=GAP;});return w;}
+  function build(){
+    track.innerHTML=''; originals.forEach(n=>track.appendChild(n.cloneNode(true)));
+    const one=Array.from(track.children); let setW=setWidth(one);
+    while(track.scrollWidth<slider.clientWidth+setW*1.2){ one.forEach(n=>track.appendChild(n.cloneNode(true))); }
+    const firstSet=Array.from(track.children).slice(0, originals.length);
+    setW=setWidth(firstSet);
+    slider.style.setProperty('--loopW', setW+'px');
+    const dur=Math.max(36, Math.round(setW/36)); /* mid speed */
+    track.style.setProperty('--marqueeDur', dur+'s');
   }
-  requestAnimationFrame(tick);
-  addEventListener('resize',()=>{ slideW=w(); setW=slideW*originals.length; },{passive:true});
-  wrap.addEventListener('mouseenter',()=>paused=true);
-  wrap.addEventListener('mouseleave',()=>paused=false);
-
-  prev.addEventListener('click',()=>{ x+=slideW; if(x>0) x-=setW; track.style.transform=`translateX(${x}px)`; });
-  next.addEventListener('click',()=>{ x-=slideW; if(x<=-setW) x+=setW; track.style.transform=`translateX(${x}px)`; });
+  build(); let t; addEventListener('resize',()=>{clearTimeout(t); t=setTimeout(build,200);},{passive:true});
 })();
+
+/* Back to Top logic */
+const back=document.getElementById('backToTop');
+function toggleTop(){ back.classList.toggle('show', scrollY>280); }
+addEventListener('scroll', toggleTop, {passive:true}); toggleTop();
+back.addEventListener('click', ()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+/* Year */
+document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 </body>
 </html>
